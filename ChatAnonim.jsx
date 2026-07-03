@@ -13,8 +13,6 @@ function Chat() {
 
   const chatsCollectionRef = collection(db, "chats");
   const messagesEndRef = useRef(null);
-
-  // Fungsi untuk mengambil daftar alamat IP yang diblokir dari Firebase Firestore
   const fetchBlockedIPs = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, "blacklist_ips"));
@@ -27,7 +25,6 @@ function Chat() {
   }
 
   useEffect(() => {
-    // Memuat pesan dari Firestore dan mengatur langganan untuk memantau perubahan
     const queryChats = query(chatsCollectionRef, orderBy("timestamp"));
     const unsubscribe = onSnapshot(queryChats, (snapshot) => {
       const newMessages = snapshot.docs.map((doc) => {
@@ -44,12 +41,11 @@ function Chat() {
     });
 
     return () => {
-      unsubscribe(); // Membersihkan langganan saat komponen tidak lagi digunakan
+      unsubscribe(); 
     }
   }, [shouldScrollToBottom]);
 
   useEffect(() => {
-    // Mengambil alamat IP pengguna dan memeriksa batasan pesan
     getUserIp();
     checkMessageCount();
     scrollToBottom();
@@ -69,11 +65,9 @@ function Chat() {
         setUserIp(cachedIp);
         return;
       }
-      // Jika tidak ada di localStorage, ambil alamat IP dari API eksternal
       const response = await axios.get("https://ipapi.co/json");
       const newUserIp = response.data.network;
       setUserIp(newUserIp);
-      // Simpan alamat IP dalam localStorage dengan waktu kedaluwarsa (misalnya, 1 jam)
       const expirationTime = new Date().getTime() + 60 * 60 * 1000; // 1 jam
       localStorage.setItem("userIp", newUserIp);
       localStorage.setItem("ipExpiration", expirationTime.toString());

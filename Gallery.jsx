@@ -9,7 +9,7 @@ import { getFirestore, collection, getDocs } from "firebase/firestore"
 import Modal from "@mui/material/Modal"
 import { Box, IconButton } from "@mui/material"
 import CloseIcon from "@mui/icons-material/Close"
-import { useSpring, animated } from "@react-spring/web" // Import the necessary components
+import { useSpring, animated } from "@react-spring/web" 
 
 const Carousel = () => {
     const [images, setImages] = useState([])
@@ -18,13 +18,12 @@ const Carousel = () => {
 
     const modalFade = useSpring({
         opacity: open ? 1 : 0,
-        config: { duration: 300 }, // Adjust the duration as needed
+        config: { duration: 300 }, 
     })
 
-    // Fungsi diubah untuk mengambil daftar gambar dari Cloud Firestore Database
     const fetchImagesFromFirebase = async () => {
         try {
-            const db = getFirestore() // Mendapatkan referensi Firestore
+            const db = getFirestore() 
             const querySnapshot = await getDocs(collection(db, "GambarAman"))
             
             const imageURLs = []

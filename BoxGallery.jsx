@@ -4,10 +4,7 @@ import { getFirestore, collection, onSnapshot, orderBy, query } from "firebase/f
 const BoxGallery = () => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    // Dengarkan perubahan data secara real-time dari Firestore GambarAman.
-    // Sebelumnya pakai getDocs() sekali saat mount, jadi foto baru yang
-    // diupload tidak akan pernah muncul tanpa reload halaman.
+    
     useEffect(() => {
         const db = getFirestore();
         const q = query(collection(db, "GambarAman"), orderBy("createdAt", "desc"));

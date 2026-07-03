@@ -7,8 +7,6 @@ import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import { useSpring, animated } from "@react-spring/web"
 import UploadImage from "./UploadImage"
-
-// Impor ikon tombol silang (close button)
 import CloseIcon from "@mui/icons-material/Close"
 
 const Fade = React.forwardRef(function Fade(props, ref) {
@@ -17,7 +15,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
 		from: { opacity: 0 },
 		to: { opacity: open ? 1 : 0 },
 		config: {
-		  duration: open ? 200 : 50, // Mengatur durasi berdasarkan kondisi open
+		  duration: open ? 200 : 50, 
 		},
 		onStart: () => {
 		  if (open && onEnter) {

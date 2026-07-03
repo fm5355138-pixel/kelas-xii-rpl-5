@@ -18,9 +18,6 @@ export default function ButtonRequest() {
   });
 
   const [images, setImages] = useState([]);
-
-  // Dengarkan perubahan data secara real-time selama modal terbuka, sehingga
-  // foto yang baru saja diupload langsung muncul tanpa perlu tutup-buka modal.
   useEffect(() => {
     if (!open) return;
 

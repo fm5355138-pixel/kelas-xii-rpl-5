@@ -17,7 +17,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
 		from: { opacity: 0 },
 		to: { opacity: open ? 1 : 0 },
 		config: {
-			duration: open ? 200 : 50, // Mengatur durasi berdasarkan kondisi open
+			duration: open ? 200 : 50, 
 		},
 		onStart: () => {
 			if (open && onEnter) {
